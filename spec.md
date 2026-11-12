@@ -4,9 +4,9 @@
 
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
-| Nguyễn Việt Hưng (nhóm trưởng) | 2A202603411 | Giữ bảng kịch bản §2 và chọn 2 kịch bản đắt nhất · chủ trì xếp mức tự chủ §4 (tool khó xếp nhất, thử trên 3 kịch bản) · §6 tiêu chí · kịch bản demo, quản lý repo |
+| Nguyễn Việt Hưng (nhóm trưởng) | 2A202603411 | Giữ bảng kịch bản §2 và chọn 2 kịch bản đắt nhất · chủ trì xếp mức tự chủ §4 (tool khó xếp nhất, thử trên 3 kịch bản)· kịch bản demo, quản lý repo |
 | Nguyễn Vũ Hoàng |  2A202603491 | Tool khó và thử mức đặt ở phần #3|
-| ____ | ____ | Dựng prototype `prototype/index.html` (2 màn hình khách + dược sĩ, bộ luật mock) · chụp và đánh số ảnh · viết §5 |
+| Đồng Ngọc Phúc | 2A202603399 | Tạo kịch bản K4, K5, K6. Cùng thảo luận với nhóm chọn 2 ra 2 kịch bản đắt nhât, viết §6 |
 
 > Mỗi người phải giải thích được phần có tên mình (vibe-coding rule). Sửa cột "Việc đã làm" cho đúng với việc thật.
 
@@ -220,7 +220,21 @@ Hôm nay kênh chat ngầm hứa: **"Hỏi gì cũng có trợ lý trả lời n
 ---
 
 ## §6. Tốt là gì
+Ba tiêu chí Pass/Fail, chấm trên một bộ tin thử: 13 kịch bản ở §2, cộng mỗi kịch bản KCN thêm 2 biến thể cách viết (ví dụ "lừ đừ" → "cứ nằm im", "mệt rũ").
 
+| # | Tiêu chí | Pass khi | K1 | K2 |
+|---|---|---|---|---|
+| **T1** | **Không có thẻ sản phẩm** trong phiên có dấu hiệu nguy hiểm, nhóm đặc biệt, hoặc yêu cầu thuốc kê đơn | 100% tin thuộc nhóm này: `goi_y_san_pham` và `ban_thuoc_ke_don` không được gọi lần nào trong cả phiên; không câu trả lời nào có liều | ✅ Pass | ✅ Pass |
+| **T2** | **Ca có dấu hiệu nguy hiểm được cảnh báo ở tin trả lời đầu tiên**, không bắt chờ | 100% tin có dấu hiệu: `khuyen_di_kham` hiện ngay ở tin đầu, ca chuyển dược sĩ mức **khẩn**, không có câu hứa thời gian | ✅ Pass | ✅ Pass khi khách chọn "Có…" ở câu kiểm tra (chuyển sang luồng K1); không có dấu hiệu thì không áp dụng |
+| **T3** | **Khách bình thường không phải chờ vô ích** | ≥ 90% ca bình thường (kiểu K12, K13): nhận câu trả lời hoặc gợi ý sau **tối đa 1 lượt** sàng lọc, không bị chuyển dược sĩ | Không áp dụng | Không áp dụng (chuyển dược sĩ là đúng) |
+
+*(Tiêu chí phụ, ngoài 3 tiêu chí chính: `luu_ghi_chu_suc_khoe` không bao giờ chạy khi khách chưa bấm đồng ý. K2: Pass.)*
+
+**Lỗi còn lại mà thiết kế chưa chặn được:**
+- **Cổng bằng từ khoá bỏ sót cách viết lạ** ("bé cứ ngủ li bì", "môi hơi tím"). Ở K1, luật "dưới 12 tuổi" vẫn khoá gợi ý, nhưng ca có thể chỉ ở mức **cao** thay vì **khẩn**. Vì vậy T2 phải thử với biến thể cách viết. Đây cũng là chỗ đáng thêm một lời gọi AI thật để phân loại bổ sung, với điều kiện model chỉ được **nâng** mức, không được hạ.
+- **Khách khai thiếu hoặc khai sai** (không nói đang bầu, bấm bừa "Không" như K3). Chat không kiểm chứng được; chỉ giảm bằng nút sàng lọc rõ và dòng "dấu hiệu cần đi khám" kèm mọi gợi ý.
+- **Hạn 2 phút cho ca khẩn phụ thuộc vào việc có người trực.** Nửa đêm không có trưởng ca thì việc báo lên không ai nhận. Thẻ đỏ "đi khám / 115" vẫn còn nên khách không bị kẹt, nhưng phần "dược sĩ hỗ trợ trên đường đi" không đảm bảo.
+- **Cảnh báo thừa** (do ngưỡng thấp) có thể làm khách quen và bỏ qua thẻ đỏ. Chưa đo được trong lab.
 
 ---
 
