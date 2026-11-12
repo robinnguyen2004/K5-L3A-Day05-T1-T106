@@ -4,8 +4,8 @@
 
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
-| Nguyễn Việt Hưng (nhóm trưởng) | 2A202603411 | Giữ bảng kịch bản §2 và chọn 2 kịch bản đắt nhất · chủ trì xếp mức tự chủ §4 (tool khó xếp nhất, thử trên 3 kịch bản)· kịch bản demo, quản lý repo |
-| Nguyễn Vũ Hoàng |  2A202603491 | Tool khó và thử mức đặt ở phần #3|
+| Nguyễn Việt Hưng (nhóm trưởng) | 2A202603411 | Tạo kịch bản K1, K2, K3 trong phần §2 và chọn 2 kịch bản đắt nhất · chủ trì xếp mức tự chủ §4 (tool khó xếp nhất, thử trên 3 kịch bản)· kịch bản demo, quản lý repo, xây prototype thử nghiệm |
+| Nguyễn Vũ Hoàng |  2A202603491 |Tạo kịch bản từ K7 - K10, thảo luận và chọn 2 kịch bản đắt nhất · Đặt mức tự chủ trên 2 kịch bản |
 | Đồng Ngọc Phúc | 2A202603399 | Tạo kịch bản K4, K5, K6. Cùng thảo luận với nhóm chọn 2 ra 2 kịch bản đắt nhât, viết §6 |
 
 > Mỗi người phải giải thích được phần có tên mình (vibe-coding rule). Sửa cột "Việc đã làm" cho đúng với việc thật.
@@ -139,9 +139,9 @@ Nhãn: **nhẹ** = khách tự thấy, tự sửa · **sửa được** = tốn 
 
 | Người | Từng chọn | Cái giá của phía đó (trỏ về §2) |
 |---|---|---|
-| Nguyễn Việt Hưng | **Cần dược sĩ duyệt mọi gợi ý** | An toàn cho K1, K2, K4. Nhưng K12 (đau họng, người lớn khoẻ) cũng vào hàng chờ; ban đêm hàng chờ dài thì ca khẩn như K1 lại bị chậm vì dược sĩ đang bận duyệt viên ngậm. |
-| Thành viên 2 (viết câu chữ AI) | **Tự làm sau một câu sàng lọc** | Nhanh cho K12. Nhưng K3 cho thấy khách gắt sẽ bấm bừa "Không" cho xong, và K2 cho thấy kể cả khi khách khai đúng "đang bầu", model vẫn có thể gợi ý sai nếu chỉ dựa vào phán đoán của nó. |
-| Thành viên 3 (dựng prototype) | **Cấm, chỉ cho hiện giá và tồn kho** | Không bao giờ gợi ý sai. Nhưng mất toàn bộ phần "tích hợp sâu hơn" của bài toán gốc; khách thường bị đẩy sang dược sĩ, hoặc tự đi mua mà không được sàng lọc. |
+| Đồng Ngọc Phúc | **Cần dược sĩ duyệt mọi gợi ý** | An toàn cho K1, K2, K4. Ban đêm hàng chờ dài thì ca khẩn như K1 lại bị chậm vì dược sĩ đang bận duyệt viên ngậm. |
+| Nguyễn Vũ Hoàng (viết câu chữ AI) | **Tự làm sau một câu sàng lọc** | K3 cho thấy khách gắt sẽ bấm bừa "Không" cho xong, và K2 cho thấy kể cả khi khách khai đúng "đang bầu", model vẫn có thể gợi ý sai nếu chỉ dựa vào phán đoán của nó. |
+| Nguyễn Việt Hưng | **Cấm, chỉ cho hiện giá và tồn kho** | Không bao giờ gợi ý sai. Nhưng mất toàn bộ phần "tích hợp sâu hơn" của bài toán gốc; khách thường bị đẩy sang dược sĩ, hoặc tự đi mua mà không được sàng lọc. |
 
 **Nhóm chốt: tự làm có điều kiện**, lấy phần đúng của cả ba phía.
 - Từ phía "cần duyệt": nhóm đặc biệt và dấu hiệu nguy hiểm **không bao giờ** tới tay model để cân nhắc. Đó là **luật cứng** trong cổng an toàn, trượt thì khoá cả phiên.
@@ -151,7 +151,7 @@ Nhãn: **nhẹ** = khách tự thấy, tự sửa · **sửa được** = tốn 
 
 ### Thử mức đã đặt trên 3 kịch bản
 
-| Câu hỏi thử | K1 · bé 2 tuổi sốt, lừ đừ (đắt nhất) | K2 · bầu 3 tháng bị cảm (đắt nhì) | K12 · "Họng đau rát 2 ngày" (bình thường) |
+| Câu hỏi thử | K1 · bé 2 tuổi sốt, lừ đừ (đắt nhất) | K2 · bầu 3 tháng bị cảm (đắt nhì)
 |---|---|---|---|
 | Cổng an toàn làm gì | Bắt "2 tuổi" (nhóm đặc biệt) + "lừ đừ", "không chịu bú" (dấu hiệu nguy hiểm). Khoá `goi_y_san_pham` cả phiên. | Bắt "bầu 3 tháng" (nhóm đặc biệt). Khoá `goi_y_san_pham` cả phiên. | Chưa biết người dùng thuốc → hỏi **một** câu gộp bằng nút. Khách chọn "Cho mình · 18–59 tuổi · không có gì ở trên". Cổng cho qua. |
 | Tool được gọi | `khuyen_di_kham` (tự làm) + `chuyen_duoc_si` khẩn (tự làm) | `chuyen_duoc_si` ưu tiên cao (tự làm) + đề nghị `luu_ghi_chu_suc_khoe` (chờ khách đồng ý) | `goi_y_san_pham` (tự làm): 2 sản phẩm không kê đơn, "dùng theo nhãn", kèm "sốt trên 38,5°C, khó nuốt, quá 3 ngày → đi khám" |
@@ -244,13 +244,11 @@ Ba tiêu chí Pass/Fail, chấm trên một bộ tin thử: 13 kịch bản ở 
 
 | Bước | Ai trình bày | Bấm gì · chỉ vào đâu |
 |---|---|---|
-| 1 | Nguyễn Việt Hưng | Lát cắt, vì sao K1 và K2 đắt nhất (§2) |
-| 2 | Thành viên 3 | Chạy K1 trên màn hình khách: thẻ đỏ (số 2), "Vì sao mình nói vậy?" (số 3), trạng thái dược sĩ (số 4); gõ "vậy mua gì" để thấy gợi ý vẫn khoá (số 6) |
-| 3 | Thành viên 3 | Sang màn hình dược sĩ: ca ở đầu hàng chờ, đồng hồ (số 7), tóm tắt (số 8) → trả lời câu "ai được báo, sau bao lâu" |
-| 4 | Thành viên 2 | Chạy K2: câu nguyên văn, một câu kiểm tra, thẻ xin đồng ý lưu; giải thích ba loại lỗi (§3) |
-| 5 | Nguyễn Việt Hưng | Mức tự chủ 5 tool và tool khó xếp nhất (§4); chạy K12 để cho thấy khách thường không phải chờ |
+| 1 | Nguyễn Việt Hưng | Chạy K1 trên màn hình khách: thẻ đỏ (số 2), "Vì sao mình nói vậy?" (số 3), trạng thái dược sĩ (số 4); gõ "vậy mua gì" để thấy gợi ý vẫn khoá (số 6) |
+| 2 | Nguyễn Việt Hưng | Sang màn hình dược sĩ: ca ở đầu hàng chờ, đồng hồ (số 7), tóm tắt (số 8) → trả lời câu "ai được báo, sau bao lâu" |
+| 3 | Nguyễn Việt Hưng | Chạy K2: câu nguyên văn, một câu kiểm tra, thẻ xin đồng ý lưu; giải thích ba loại lỗi (§3) |
 
 **Ca lạ nhận được ở demo:** *(điền sau buổi demo)*
-- Ca được đưa: ____
-- Prototype đã làm gì: ____ (luồng nào: đỏ / vàng / gợi ý; tool nào được gọi; có chỗ nào sai không)
-- Nhóm có đổi ý gì sau ca đó không: ____
+- Ca được đưa: Người mang thai không phải người đang nhắn tin.
+- Prototype đã làm gì: Luồng vàng, đề xuất liên hệ với dược sĩ để được tư vấn.
+- Nhóm có đổi ý gì sau ca đó không: Nhóm không đổi ý vì đã trả về đúng luồng xử lý khi có yêu cầu mua thuốc dành cho phụ nữ mang thai.
