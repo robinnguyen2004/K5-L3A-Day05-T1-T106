@@ -1,6 +1,6 @@
 # Bài nộp LAB5 — T1 Y tế · Nhóm T106
 
-**Lớp:** L3A · **Bàn / zone:** ____ · **Track:** T1 · Y tế (kênh chat "Hỏi dược sĩ" của Pharmacity)
+**Lớp:** L3A · **Bàn / zone:** 3A · **Track:** T1 · Y tế (kênh chat "Hỏi dược sĩ" của Pharmacity)
 
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
