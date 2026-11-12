@@ -79,7 +79,20 @@ Nhãn: **nhẹ** = khách tự thấy, tự sửa · **sửa được** = tốn 
 - **Làm gì tiếp:** gọi 115 hoặc đi khám (thẻ vẫn còn đó) · chờ dược sĩ nhắn trong cùng khung chat · **đính chính** nếu AI hiểu sai (ví dụ "bé không lừ đừ, vẫn bú bình thường"). Khi đó ưu tiên hạ từ khẩn xuống cao, nhưng AI **vẫn không gợi ý thuốc** vì trẻ dưới 6 tuổi sốt cao vẫn thuộc nhóm đặc biệt. AI chỉ nhắc các dấu hiệu cần đi khám. **Nếu khách không làm gì:** thẻ đỏ vẫn hiện, ca vẫn ở đầu hàng chờ dược sĩ.
 - **Ai được báo, sau bao lâu:** **dược sĩ trực, ngay lập tức.** Ca nhảy lên **đầu hàng chờ** với nhãn KHẨN và đồng hồ đếm. **Quá 2 phút** chưa ai nhận thì **báo trưởng ca / dược sĩ thứ hai**. Dược sĩ thấy tóm tắt: người dùng thuốc (trẻ 2 tuổi), tin gốc đã tô dấu hiệu, "đã uống hạ sốt: chưa rõ tên, liều, giờ", AI đã làm gì (đã khuyên khám, **chưa** gợi ý sản phẩm, chưa lưu gì), và gợi ý câu nên hỏi (cân nặng, giờ uống thuốc, co giật/khó thở).
 - **Loại lỗi: lỗi ngữ cảnh (context error).** Nếu AI gợi ý thêm thuốc hạ sốt thì hệ thống đã chạy **đúng như thiết kế cũ**: khách hỏi "mua gì", AI gợi ý sản phẩm. Nhưng nó sai với tình huống thật, vì đây là ca cấp cứu khoác áo câu mua hàng. Vì là lỗi ngữ cảnh, **sửa câu chữ không đủ**, phải **sửa thiết kế**: thêm một *cổng an toàn* chạy trước mọi tool (xem bên dưới). Cách nói cũng không xin lỗi chung chung, mà nói thẳng lý do ("lừ đừ, không chịu bú là dấu hiệu cần khám") để khách hiểu vì sao AI không bán.
-
+### Kịch bản K7 · Bé 7 tuổi nghi phản vệ sau uống kháng sinh (đường failure / khẩn)
+**Quyết định: dừng tư vấn thuốc + cảnh báo cấp cứu ngay + báo dược sĩ song song.**
+| Hỏi thêm rồi mới cảnh báo | Loại | Sưng môi, khò khè, mệt lả đã đủ để ưu tiên trợ giúp khẩn; hỏi dài gây chậm trễ. |
+| Gợi ý thuốc dị ứng, theo dõi thêm | Loại | Khiến khách trì hoãn cấp cứu để mua thuốc. |
+| Chỉ chuyển dược sĩ | Loại | Ca có thể nằm chờ dù bé cần trợ giúp ngay. |
+| Cảnh báo cấp cứu + báo dược sĩ song song | Chọn | Khách nhận hướng dẫn ngay, không phải chờ người nhận chat. |
+- **AI nói nguyên văn:**
+  > Tôi hiểu bạn đang lo. Bé sưng môi, khò khè và mệt lả sau uống thuốc có thể là phản ứng dị ứng nghiêm trọng. Hãy gọi 115 ngay, không chờ mua thuốc hoặc chờ chat. Ca đã được báo dược sĩ để hỗ trợ song song.
+- **Người dùng thấy:** cảnh báo nổi bật; nút “Các bước hỗ trợ ngay”, “Chat với dược sĩ”, “Sửa thông tin” và “Xem ghi chú”. Không có nút mua thuốc hoặc liều dùng.
+- **Làm gì tiếp:** gọi cấp cứu; nếu đã gọi, AI hướng dẫn trong lúc chờ, không lặp yêu cầu gọi. Bé xấu đi thì báo lại 115 ngay. Không tương tác thì cảnh báo vẫn giữ.
+- **Ai được báo, khi nào:** dược sĩ trực được báo ngay, kèm tuổi, triệu chứng, thuốc đã dùng và thông tin chưa rõ. Dược sĩ xác nhận nhận ca thì AI dừng, người thật chat tiếp. Vắng dược sĩ thì AI hướng dẫn hỗ trợ ban đầu, không hứa thời gian nhận.
+- **Loại lỗi:** lỗi ngữ cảnh — AI chiều yêu cầu mua thuốc, bỏ sót dấu hiệu nguy hiểm. Phải khóa gợi ý sản phẩm trong ca khẩn, không chỉ thêm lời cảnh báo.
+- **HAX:** G2 — rõ căn cứ và giới hạn; G9 — sửa dữ kiện; G10 — giới hạn AI, chuyển người thật.
+- **Giới hạn:** dùng “nghi phản vệ”, không khẳng định “sốc phản vệ” khi chưa được nhân viên y tế đánh giá.
 ### Nguyên tắc HAX/PAIR (mỗi cái trỏ vào chỗ cụ thể; số là số trên ảnh ở §5)
 
 - **G1 · Làm rõ hệ thống làm được gì** → nhãn **"Trợ lý AI · không phải dược sĩ"** trên mọi tin của AI, và câu chào: *"Mình không chẩn đoán bệnh, không nói liều dùng, không bán thuốc kê đơn"* (số **1**). Tin của dược sĩ thật có nhãn xanh dương khác hẳn. Đáp ứng Luật AI 134/2025/QH15, Điều 11 khoản 1 (cho người dùng biết đang làm việc với AI).
