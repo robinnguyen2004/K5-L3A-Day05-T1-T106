@@ -5,7 +5,7 @@
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
 | Nguyễn Việt Hưng (nhóm trưởng) | 2A202603411 | Giữ bảng kịch bản §2 và chọn 2 kịch bản đắt nhất · chủ trì xếp mức tự chủ §4 (tool khó xếp nhất, thử trên 3 kịch bản) · §6 tiêu chí · kịch bản demo, quản lý repo |
-| ____ | ____ | Viết câu AI nói nguyên văn §3 · phân loại lỗi · chọn và gắn nguyên tắc HAX/PAIR · tóm tắt ca cho dược sĩ |
+| Nguyễn Vũ Hoàng |  2A202603491 | Tool khó và thử mức đặt ở phần #3|
 | ____ | ____ | Dựng prototype `prototype/index.html` (2 màn hình khách + dược sĩ, bộ luật mock) · chụp và đánh số ảnh · viết §5 |
 
 > Mỗi người phải giải thích được phần có tên mình (vibe-coding rule). Sửa cột "Việc đã làm" cho đúng với việc thật.
