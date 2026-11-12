@@ -135,7 +135,30 @@ Nhãn: **nhẹ** = khách tự thấy, tự sửa · **sửa được** = tốn 
 | `luu_ghi_chu_suc_khoe` | **Cần người duyệt: chính khách** (không phải dược sĩ). Tách 2 bước: AI **soạn** đúng câu sẽ lưu → khách bấm **Đồng ý lưu**. Mặc định **không lưu**. **Chỉ lưu thông tin của chủ tài khoản**; thông tin của người nhà (con ở K1, bố ở K8, vợ ở K9) thì không đề nghị lưu. **Quá hạn:** khách không bấm thì không lưu, dữ liệu chỉ nằm trong phiên chat. | Khách chịu: lộ thông tin nhạy cảm (mang thai, bệnh mạn tính). **Xoá được nhưng đã có rủi ro lộ** (bảng tool). | Không mất gì gấp: lưu chỉ để lần sau đỡ hỏi lại, không ảnh hưởng ca hiện tại. | **AI tự lưu để lần sau đỡ hỏi:** loại vì trái rubric riêng mục 7; dữ liệu sức khoẻ là dữ liệu cá nhân nhạy cảm. **Dược sĩ duyệt:** loại vì người có quyền đồng ý với dữ liệu là khách, không phải dược sĩ. **Cấm hẳn:** có cân nhắc, loại vì khách mua thuốc thường xuyên cho bệnh mạn tính được lợi thật khi không phải khai lại. |
 | `ban_thuoc_ke_don` | **Cấm.** AI không bao giờ gọi, kể cả khi khách nói có đơn hay "tự chịu trách nhiệm" (K6). Bán thuốc kê đơn là việc của dược sĩ sau khi nhận ca, theo quy trình của nhà thuốc, ngoài phạm vi AI. | Người dùng thuốc chịu: kháng sinh, thuốc huyết áp dùng sai người, sai bệnh (K6, K10). **Không đảo được** (bảng tool). | Không mất gì: ca vẫn tới dược sĩ qua `chuyen_duoc_si`. | **Cần dược sĩ duyệt (AI soạn đơn bán, dược sĩ bấm):** loại vì AI không có tool nào xác minh đơn thuốc là thật, đúng người, còn hạn; và dược sĩ duyệt một đơn AI soạn sẵn dễ bấm cho qua (thiên kiến tự động hoá). **Tự làm khi khách gửi ảnh đơn:** loại vì cùng lý do, và đây là việc chuyên môn track yêu cầu dược sĩ làm. |
 
- |
+ ### Tool khó xếp nhất: `goi_y_san_pham`
+
+| Người | Từng chọn | Cái giá của phía đó (trỏ về §2) |
+|---|---|---|
+| Nguyễn Việt Hưng | **Cần dược sĩ duyệt mọi gợi ý** | An toàn cho K1, K2, K4. Nhưng K12 (đau họng, người lớn khoẻ) cũng vào hàng chờ; ban đêm hàng chờ dài thì ca khẩn như K1 lại bị chậm vì dược sĩ đang bận duyệt viên ngậm. |
+| Thành viên 2 (viết câu chữ AI) | **Tự làm sau một câu sàng lọc** | Nhanh cho K12. Nhưng K3 cho thấy khách gắt sẽ bấm bừa "Không" cho xong, và K2 cho thấy kể cả khi khách khai đúng "đang bầu", model vẫn có thể gợi ý sai nếu chỉ dựa vào phán đoán của nó. |
+| Thành viên 3 (dựng prototype) | **Cấm, chỉ cho hiện giá và tồn kho** | Không bao giờ gợi ý sai. Nhưng mất toàn bộ phần "tích hợp sâu hơn" của bài toán gốc; khách thường bị đẩy sang dược sĩ, hoặc tự đi mua mà không được sàng lọc. |
+
+**Nhóm chốt: tự làm có điều kiện**, lấy phần đúng của cả ba phía.
+- Từ phía "cần duyệt": nhóm đặc biệt và dấu hiệu nguy hiểm **không bao giờ** tới tay model để cân nhắc. Đó là **luật cứng** trong cổng an toàn, trượt thì khoá cả phiên.
+- Từ phía "tự làm": khách thường chỉ trả lời **một** câu sàng lọc bằng nút (khoảng 10 giây) rồi nhận gợi ý, không chờ dược sĩ.
+- Từ phía "cấm": danh mục được gợi ý chỉ có **thuốc không kê đơn**, và **không bao giờ có liều**.
+- Phần K3 (khách bấm bừa) không chặn hết được bằng mức tự chủ. Nhóm chấp nhận đây là rủi ro còn lại, giảm bằng nút "Đang mang thai / cho con bú" luôn hiện trong câu sàng lọc và dòng "dấu hiệu cần đi khám" kèm mọi gợi ý (§6).
+
+### Thử mức đã đặt trên 3 kịch bản
+
+| Câu hỏi thử | K1 · bé 2 tuổi sốt, lừ đừ (đắt nhất) | K2 · bầu 3 tháng bị cảm (đắt nhì) | K12 · "Họng đau rát 2 ngày" (bình thường) |
+|---|---|---|---|
+| Cổng an toàn làm gì | Bắt "2 tuổi" (nhóm đặc biệt) + "lừ đừ", "không chịu bú" (dấu hiệu nguy hiểm). Khoá `goi_y_san_pham` cả phiên. | Bắt "bầu 3 tháng" (nhóm đặc biệt). Khoá `goi_y_san_pham` cả phiên. | Chưa biết người dùng thuốc → hỏi **một** câu gộp bằng nút. Khách chọn "Cho mình · 18–59 tuổi · không có gì ở trên". Cổng cho qua. |
+| Tool được gọi | `khuyen_di_kham` (tự làm) + `chuyen_duoc_si` khẩn (tự làm) | `chuyen_duoc_si` ưu tiên cao (tự làm) + đề nghị `luu_ghi_chu_suc_khoe` (chờ khách đồng ý) | `goi_y_san_pham` (tự làm): 2 sản phẩm không kê đơn, "dùng theo nhãn", kèm "sốt trên 38,5°C, khó nuốt, quá 3 ngày → đi khám" |
+| Cái sai có bị chặn không? | **Có.** Không có thẻ sản phẩm nào, kể cả khi khách hỏi lại "vậy mua gì". Ca không nằm cuối hàng chờ. | **Có.** Không gợi ý thuốc cảm, kể cả loại "nghe nhẹ". | **Có**, với các cái sai đã biết: khách chọn "đang mang thai" ở câu sàng lọc thì rẽ sang luồng K2. |
+| Còn việc nào AI làm khi lẽ ra phải hỏi? | `khuyen_di_kham` hiện **không hỏi trước**. Nhóm cố ý: hỏi thêm không đổi quyết định (§3). Rủi ro còn lại: nếu khách tả dấu hiệu bằng chữ cổng không nhận ra ("ngủ li bì"), gợi ý vẫn bị khoá nhờ luật "dưới 12 tuổi" nhưng ca chỉ ở **ưu tiên cao**, không phải khẩn. | Không. AI chỉ hỏi đúng một câu kiểm tra nguy hiểm, và **không tự lưu** "đang mang thai" khi khách chưa bấm đồng ý. | `goi_y_san_pham` chạy dựa trên lời khai của khách. Khách khai thiếu (đang dùng thuốc huyết áp mà không bấm) thì cổng không biết. Đây là giới hạn chung của chat; giảm bằng nút sàng lọc rõ ràng, không chặn hẳn được. |
+| Người dùng bình thường có phải chờ vô ích không? | Không áp dụng (không phải ca bình thường). Khách nhận câu "đi khám ngay" ở **tin trả lời đầu tiên**, không chờ ai. | Khách phải chờ dược sĩ, và **đó là chờ có ích**: trong lúc chờ đã có lời dặn "chưa nên tự uống thuốc cảm". | **Không.** Một lượt bấm, nhận gợi ý ngay, không vào hàng chờ dược sĩ.
+
 
 ### Luật thêm và tool tách bước
 
